@@ -1,3 +1,7 @@
+'''
+Jag bjöd dig in på nytt efersom jag skapade en ny repo, filen ligger i /projects.
+https://github.com/Systemad/OOP-Python/invitations
+'''
 accountList = []
 
 class account:
