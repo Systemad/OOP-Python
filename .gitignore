@@ -1,0 +1,9 @@
+# Ignore generated python cache
+__pycache__
+
+# Ingore generated files
+*.txt
+*.swp
+
+# misc draft
+bankAccount.py
