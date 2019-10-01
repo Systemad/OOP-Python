@@ -1,11 +1,24 @@
 import datetime
 
-class Employee:
-    def __init_(self, namn, birth):
+class friends:
+    def __init__(self, namn):
         self.Namn = namn
-        self._birthDate = birth
         self._postNum = ""
         self._postOrt = ""
         self._address = ""
-        self._workedHour = 0
+    
+    def changeInfo(self, Namn, address, postOrt):
+        self._address = input("Ändrad address: ")
+        self._postNum = postNum
+        self._postOrt = postOrt
 
+
+friend1 = friends("dan")
+#friend.Namn = "dan"
+#print(friend1)
+friend1.namn = "dan"
+
+
+#listFriends = [friend1]
+
+print(friend1)
