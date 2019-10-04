@@ -1,7 +1,3 @@
-'''
-Jag bjöd dig in på nytt efersom jag skapade en ny repo, filen ligger i /projects.
-https://github.com/Systemad/OOP-Python/invitations
-'''
 accountList = []
 
 class account:
@@ -9,54 +5,41 @@ class account:
     balance = 0
 
 def createAccount():
-        print("---Skapa nytt konto---\n")
-        print("Du har valt att skapa ett konto: \n")
-        newAccount = account()
-        newAccount.name = input("Konto namn: ")
-        if newAccount.name in accountList:
-            choice = input("Kontot finns redan, vill du logga in? (j/N) ")
-            if choice == 'j':
-                loginAccount()
-            else:
-                createAccount()
-        else:
-            print("Kontot skapat, vängligen logga in\n")
-            accountList.append(newAccount.name)
-
+    print("---Skapa nytt konto---\n")
+    print("Du har valt att skapa ett konto: \n")
+    newAccount = account()
+    newAccount = input("Ange konto namn-> ")
+    if account.name in accountList:
+        print("Kontot finns redan") 
+    else:
+        print("Kontot skapat")
+        accountList.append(newAccount)
 
 def loginAccount():
-        print("---Logga in---")
-        print("Du har valt att logga in:")
-        accountNumber = input("Ange Konto namn: ")
-        if accountNumber not in accountList:
-            choice = input("Konton finns inte, vill du skapa ett (j/N) ")
-            if choice == 'j':
-                createAccount()
-            else:
-                print("Försök igen")
-                loginAccount()
-        else:
-            print("Loggar in...")
-            manageAccount()
-
-
+    print("---Logga in---")
+    account.name = input("Ange konto namn-> ")
+    if account.name in accountList:
+        manageAccount(account)
+    else:
+        print("Kontot finns inte, skapa ett först")
 
 def cashIn():
-    amount = int(input("Hur mycket vill du sätta in: "))
+    amount = int(input("Hur mycket vill du sätta in-> "))
     account.balance+=amount
     print("Ditt saldo är nu: " , account.balance , "SEK") 
-    return account.balance
 
 def cashOut():
-    amount = int(input("Hur mycket vill du ta ut: "))
-    account.balance-=amount
-    print("Ditt saldo är nu: " , account.balance , "SEK") 
-    return account.balance
+    amount = int(input("Hur mycket vill du ta ut-> "))
+    if amount > account.balance:
+        print("Du kan inte ta ut mer än vad du har på kontot!")
+    else:
+        account.balance-=amount
+        print("Ditt saldo är nu: " , account.balance , "SEK")
 
 def showCash():
-    print("Ditt saldo är: " , account.balance , "SEK") 
+    print("Ditt saldo är: " , account.balance , "SEK")
 
-def manageAccount(): 
+def manageAccount(account): 
     while True:
         print("---Hantera Konto---\n") 
         print("1. Lägg till saldo")
@@ -69,13 +52,11 @@ def manageAccount():
         elif select == '2':
             cashOut()
         elif select == '3':
-             showCash()
+            showCash()
         elif select == '4':
-            mainMenu()
             break
         else:
             print("Fel inmatning, försök igen: ")
-
 
 def mainMenu():
     while True:
@@ -89,10 +70,6 @@ def mainMenu():
         elif select == '2':
             loginAccount()
         elif select == '3':
-            exit()
             break
-        else:
-            print("Felaktig inmatning, försök igen")
-            mainMenu()
 
 mainMenu()
