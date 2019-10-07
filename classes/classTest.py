@@ -1,24 +1,15 @@
-import datetime
-
 class friends:
-    def __init__(self, namn):
-        self.Namn = namn
-        self._postNum = ""
-        self._postOrt = ""
-        self._address = ""
-    
-    def changeInfo(self, Namn, address, postOrt):
-        self._address = input("Ändrad address: ")
-        self._postNum = postNum
-        self._postOrt = postOrt
+    def __init__(self, namn, postNum, postOrt, address):
+        self.namn = namn
+        self.postNum = postNum
+        self.postOrt = postOrt
+        self.address = address
+
+    def allInfo(self):
+        return '{} {} {} {}'.format(self.namn, self.postNum, self.postOrt, self.address)
 
 
-friend1 = friends("dan")
-#friend.Namn = "dan"
-#print(friend1)
-friend1.namn = "dan"
+friend1 = friends('Dan', 'Hejhe', '2121', 'Hejgatan')
 
+print(friend1.allInfo())
 
-#listFriends = [friend1]
-
-print(friend1)
