@@ -5,71 +5,57 @@ class account:
     balance = 0
 
 def createAccount():
-    print("---Skapa nytt konto---\n")
-    print("Du har valt att skapa ett konto: \n")
+    print("---Create new account---\n")
+    print("You have chosen to create an account: \n")
     newAccount = account()
-    newAccount = input("Ange konto namn-> ")
-    if account.name in accountList:
-        print("Kontot finns redan") 
-    else:
-        print("Kontot skapat")
-        accountList.append(newAccount)
+    newAccount.name = input("Name:")
+    print("Account created!\n")
+    return newAccount
 
-def loginAccount():
-    print("---Logga in---")
-    account.name = input("Ange konto namn-> ")
-    if account.name in accountList:
-        manageAccount(account)
-    else:
-        print("Kontot finns inte, skapa ett först")
+def logIn():
+    print("---Log in---")
+    n = 1
+    for accounts in accountList:
+        print(f"{n} : {accounts.name}")
+        n = n + 1
+    acc = int(input("Choose account: "))
+    return accountList[acc-1]
 
-def cashIn():
-    amount = int(input("Hur mycket vill du sätta in-> "))
-    account.balance+=amount
-    print("Ditt saldo är nu: " , account.balance , "SEK") 
-
-def cashOut():
-    amount = int(input("Hur mycket vill du ta ut-> "))
-    if amount > account.balance:
-        print("Du kan inte ta ut mer än vad du har på kontot!")
-    else:
-        account.balance-=amount
-        print("Ditt saldo är nu: " , account.balance , "SEK")
-
-def showCash():
-    print("Ditt saldo är: " , account.balance , "SEK")
-
-def manageAccount(account): 
+def manageAccount(account):
     while True:
-        print("---Hantera Konto---\n") 
-        print("1. Lägg till saldo")
-        print("2. Ta ut saldo")
-        print("3. Visa saldo")  
-        print("4. Avsluta")  
-        select = input("Välj ett alternativ: ")
-        if select == '1':
-            cashIn()
-        elif select == '2':
-            cashOut()
-        elif select == '3':
-            showCash()
-        elif select == '4':
-            break
-        else:
-            print("Fel inmatning, försök igen: ")
+        print("1. Deposit")
+        print("2. Withdraw")
+        print("3. Show balance")
+        print("4. Exit")
+        selection = input("Choose option: ")
+        if selection == "1":
+            amount = int(input("How much to deposit: "))
+            account.balance+=amount
+            print("Your balance is now: " , account.balance , "SEK")
 
-def mainMenu():
-    while True:
-        print("---Huvudmeny---\n")
-        print("1. Skapa Konto")
-        print("2. Logga in")
-        print("3. Avsluta\n")
-        select = input("Välj ett alternativ: ")
-        if select == '1':
-            createAccount()
-        elif select == '2':
-            loginAccount()
-        elif select == '3':
+        elif selection == "2":
+            amount = int(input("How much to withdraw: "))
+            if amount > account.balance:
+                print("You can't withdraw more than you have on your account!\n")
+            else:
+                account.balance-=amount
+                print("Your balance is now: " , account.balance , "SEK\n")
+
+        elif selection == "3":
+            print("Your balance is: " , account.balance , "SEK\n")
+            
+        elif selection == "4":
             break
 
-mainMenu()
+while True:
+    print("1. New Account")
+    print("2. Log in")
+    print("3. Exit\n")
+    option = input("Choose option: ")
+    if option == "1":
+        accountList.append(createAccount())
+    elif option == "2":
+        updateAccount = logIn()
+        manageAccount(updateAccount)
+    elif option == "3":
+        break
