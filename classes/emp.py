@@ -12,6 +12,18 @@ class Employee:
     def fullName(self): # functions to print full name
         return '{} {}'.format(self.first, self.last)
 
+    def __init__(self, first, last, pay, employees=None):
+        super().__init__(first, last, pay)
+        if employees is None:
+            self.employees = []
+        else:
+            self.employees = employees
+
+    def add_emp(self, emp):
+        if emp not in self.employees:
+            self.employees.append(emp)
+
+
 # Developer class, inherits first, last, pay
 class developer(Employee):
     # changes pay raise
